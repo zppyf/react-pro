@@ -1,0 +1,22 @@
+.category {
+    padding-bottom: 0;
+    padding-top: 33px;
+}
+
+.category .row:last-child {
+    margin-bottom: 0;
+}
+
+.category .content {
+    text-align: center;
+}
+
+.category .content i {
+    font-size: 28px;
+    color: #474747;
+}
+
+.category .content span {
+    display: block;
+    margin-top: 5px;
+}
