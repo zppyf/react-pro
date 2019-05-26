@@ -20,3 +20,5 @@
     display: block;
     margin-top: 5px;
 }
+.product-home  .container .owl-carousel{width:372px;display:block;z-index: 0}
+.product-home .container .owl-carousel .content.aa{float:left;width:181px;padding:3px 8px;}

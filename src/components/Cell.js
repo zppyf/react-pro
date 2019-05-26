@@ -1,19 +1,29 @@
 import React,{Component} from "react";
 
 import '../assets/css/Cell.css'
+
 import {Link} from 'react-router-dom'
 
 class Cell extends Component {
   render() {
+    let {cells, dataName} = this.props;
     return (
       <div className="cell">
-        <Link to={{
-          pathname:'/detail/1',
-          search:"?dataName=column"
-          }}>
-          <h2>1.xx</h2>
-          <p>oooo</p>
-        </Link>
+        {
+          cells.map(item => (
+            <Link
+              key={item.id}
+              to={{
+                pathname:'/detail/' + item.id,
+                search:"?dataName=" + dataName
+              }}
+            >
+              <h2>{item.id}.{item.title}</h2>
+              <p>{item.des}</p>
+            </Link>
+          ) )
+        }
+
       </div>
     );
   }

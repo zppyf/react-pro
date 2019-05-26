@@ -1,13 +1,13 @@
-import React from 'react';
+import React,{Component} from "react";
 import '../assets/css/Home.css';
 import Swiper from '../components/Swiper';
-// import Cell from '../components/Cell';
+import Cell from '../components/Cell';
 import {Link} from "react-router-dom"
-// import '../assets/css1/a.css';
+
 import axios from 'axios';
-export default class Home extends React.Component{
+class Home extends Component{
   state={
-    // cells:[],
+    cells:[],
     banners:[],
     img:[]
   };
@@ -132,7 +132,7 @@ export default class Home extends React.Component{
                     </div>
                 </div> */}
             </div>
-            <div className="row">
+            {/* <div className="row">
                   {img.map(item => (
                       <div className="col s6" key={item.id}>
                           <div className="content"
@@ -151,7 +151,7 @@ export default class Home extends React.Component{
                           </div>
                      </div>
                       ))
-                  }
+                  } */}
                 {/* <div className="col s6">
                     <div className="content">
                         <div className="image">
@@ -165,7 +165,7 @@ export default class Home extends React.Component{
                         </div>
                     </div>
                 </div> */}
-            </div>
+            {/* </div> */}
         </div>
     </div>
     {/* <!-- end b-seller --> */}
@@ -186,20 +186,21 @@ export default class Home extends React.Component{
                 <div className="section-title">
                     <h3>Change Your Style</h3>
                 </div>
-                <div className="product-slide owl-carousel owl-theme">
-                    <div className="content">
-                        <a href="product-details.html"><img src="/images/style1.jpg" alt=""/></a>
+                <div className="product-slide owl-carousel owl-theme clear">
+                {img.map(item => (
+                    <div className="content aa" 
+                    key={item.id}
+                    // onClick={()=>{this.toDetail(item.id)}}
+                    >
+                    <Link to="/detail">
+                        <img src={item.img} alt=""/>
+                    </Link>
                     </div>
-                    <div className="content">
-                        <a href="product-details.html"><img src="images/style3.jpg" alt=""/></a>
-                    </div>
-                    <div className="content">
-                        <a href="product-details.html"><img src="images/style2.jpg" alt=""/></a>
-                    </div>
-                    <div className="content">
-                        <a href="product-details.html"><img src="images/style4.jpg" alt=""/></a>
-                    </div>
+                
+                   ))
+                }
                 </div>
+                    
                 <div className="l-more">
                     <a href="see-more-product.html">
               See More<i className="fa fa-angle-right"></i>
@@ -215,17 +216,17 @@ export default class Home extends React.Component{
                 <div className="section-title">
                     <h3>The Best Accessories</h3>
                 </div>
-                <div className="product-slide-two owl-carousel owl-theme">
-                    <div className="content">
+                <div className="product-slide-two owl-carousel owl-theme clear">
+                    <div className="content aa">
                         <a href="product-details.html"><img src="images/accessories2.jpg" alt=""/></a>
                     </div>
-                    <div className="content">
+                    <div className="content aa">
                         <a href="product-details.html"><img src="images/accessories1.jpg" alt=""/></a>
                     </div>
-                    <div className="content">
+                    <div className="content aa">
                         <a href="product-details.html"><img src="images/accessories3.jpg" alt=""/></a>
                     </div>
-                    <div className="content">
+                    <div className="content aa">
                         <a href="product-details.html"><img src="images/accessories4.jpg" alt=""/></a>
                     </div>
                 </div>
@@ -257,16 +258,17 @@ export default class Home extends React.Component{
 
   async componentDidMount(){
 
-    // let resHome = await axios({url:'/mock/home',params:{_limit:10}});
-    // this.setState({cells:resHome.data.page_data})
+    let resHome = await axios({url:'/mock/home',params:{_limit:15}});
+    this.setState({cells:resHome.data.page_data})
 
     let resBanner = await axios({url:'/mock/banner',params:{_limit:3}});
     this.setState({banners:resBanner.data.page_data})
 
-    let resImg = await axios({url:'/mock/img',params:{_limit:2}});
+    let resImg = await axios({url:'/mock/img',params:{_limit:4}});
     this.setState({img:resImg.data.page_data})
 
 
   }
 
 }
+export default Home;

@@ -1,23 +1,26 @@
 import React,{Component} from "react";
 import '../assets/css/User.css'
-import {Link} from "react-router-dom"
 class User extends Component {
   render() {
+    let {fans, follow, icon, nikename, time } = this.props.data;
     return (
       <div id="content">
         <div id="header">
-          <h2><img src="/images/headimg.png" alt=""/></h2>
+          <h2><img src={icon} alt=""/></h2>
           <div className="user-box">
-            <Link to="/login">登录</Link>
-            <Link to="/login">注册</Link>
+            <a>{nikename}</a>
+            <a href="javascript:;" onClick={()=>{
+              localStorage.removeItem('rc_user');
+              this.props.history.push('/home')
+            }}>注销</a>
           </div>
           <ul className="clear">
             <li>
-              <span>0</span>
+              <span>{follow}</span>
               <p>关注</p>
             </li>
             <li>
-              <span>0</span>
+              <span>{fans}</span>
               <p className="end">粉丝</p>
             </li>
           </ul>

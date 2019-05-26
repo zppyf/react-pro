@@ -1,9 +1,38 @@
 import React,{Component} from "react";
 import '../assets/css/Login.css'
 // import '../assets/css1/a.css'
+import {Link} from 'react-router-dom'
+import axios from 'axios';
 
-import {Link} from "react-router-dom"
 class Login extends Component {
+  state={
+    username:'',
+    password:'',
+
+  }
+  changeIpt = (ev) => {
+    this.setState({
+      [ev.target.name]:ev.target.value
+    })
+  }
+  submit = async () => {
+    let res = await axios({
+      url:'/mock/login',
+      params:{
+        username:this.state.username,
+        password:this.state.password
+      }
+    });
+
+    // console.log(res)
+    if (res.data.error===0){
+      //写入local && 跳转user
+      localStorage.setItem('rc_user',JSON.stringify(res.data.page_data))
+      this.props.history.push('/user')
+    } else {
+      alert('失败')
+    }
+  }
   render() {
     return (
       <div className="sign-in segments-page">

@@ -1,26 +1,23 @@
-import React from 'react';
+import React,{Component} from "react";
 import '../assets/css/Column.css'
-import Cell from '../components/Cell'
-import querystring from 'query-string';
+import Cell from "../components/Cell";
+import axios from "axios";
 
-export default class Column extends React.Component{
-
-  render(){
-
-    let {match,location} = this.props;
-
+class Column extends Component {
+  state={
+    cells:[]
+  };
+  render() {
     return (
       <div className="Column">
-       <Cell/>
+        <Cell cells={this.state.cells} dataName="column"/>
       </div>
-    )
+    );
   }
-
-  // componentDidMount(){
-  //   console.log(this.props.match.params.id);
-  //   console.log(this.props.location.search);
-  //   console.log(querystring.parse(this.props.location.search));
-  //   //参数和数据 可以读发送请求...
-  // }
-
+  async componentDidMount(){
+    let res = await axios({url:'/mock/column',params:{_limit:10}});
+    this.setState({cells:res.data.page_data})
+  }
 }
+
+export default Column;

@@ -13,10 +13,10 @@ body{ background:#f2f4f5;}
 #header ul li p.end{ border:0;}
 
 #content .docList{width:6.4rem; margin:0 auto; margin-top:0.32rem;}
-.docList ul{ border-top:1px solid #7b7c7c;}
-.docList ul li{ background:#fff;height:0.79rem; border-top:1px solid #bcbbba; border-bottom:1px solid #7b7c7c;}
-.docList ul li span{ float:right;margin-right:0.14rem; margin-top:0.26rem;}
-.docList ul li b{width:0.21rem;height:0.24rem; background:url(../img/next_img.png) no-repeat 0 0; background-size:100%; float:right;margin-right:0.34rem; margin-top:0.28rem;}
+#content .docList ul{ border-top:1px solid #7b7c7c;}
+#content .docList ul li{ background:#fff;height:0.79rem; border-top:1px solid #bcbbba; border-bottom:1px solid #7b7c7c;}
+#content .docList ul li span{ float:right;margin-right:0.14rem; margin-top:0.26rem;}
+#content .docList ul li b{width:0.21rem;height:0.24rem; background:url(../img/next_img.png) no-repeat 0 0; background-size:100%; float:right;margin-right:0.34rem; margin-top:0.28rem;}
 
 
 .docList ul .gk-text i{width:0.37rem;height:0.37rem; background:url(../img/gk_text.png) no-repeat 0 0; background-size:100%; float:left; margin-left:0.29rem; margin-top:0.24rem;}
