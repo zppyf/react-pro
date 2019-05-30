@@ -3,21 +3,29 @@ import '../assets/css/Home.css';
 import Swiper from '../components/Swiper';
 import Cell from '../components/Cell';
 import {Link} from "react-router-dom"
-
+import {observer,inject} from "mobx-react"
 import axios from 'axios';
-class Home extends Component{
-  state={
-    cells:[],
-    banners:[],
-    img:[]
-  };
 
+@inject('store')
+@observer
+class Home extends Component{
+//   state={
+//     cells:[],
+//     banners:[],
+//     img:[]
+//   };
+  constructor(props){
+    super();
+    props.store.list.get({url: '/mock/home',params:{_limit:10},propsName: 'home'});
+    props.store.list.get({url: '/mock/banner',params:{_limit:3},propsName: 'banner'});
+    props.store.list.get({url: '/mock/img',params:{_limit:4},propsName: 'img'});
+  }
   render(){
-    let {img} = this.state;
+    let {home,banner,img} = this.props.store.list;
     return (
       <div className="Home">
         {/* <Swiper/> */}
-        <Swiper {...this.props} banners={this.state.banners} dataName="banner"/>
+        <Swiper {...this.props} banners={banner} dataName="banner"/>
          <div className="category segments">
           <div className="container">
             <div className="row">
@@ -254,20 +262,6 @@ class Home extends Component{
         </footer>
       </div>
     )
-  }
-
-  async componentDidMount(){
-
-    let resHome = await axios({url:'/mock/home',params:{_limit:15}});
-    this.setState({cells:resHome.data.page_data})
-
-    let resBanner = await axios({url:'/mock/banner',params:{_limit:3}});
-    this.setState({banners:resBanner.data.page_data})
-
-    let resImg = await axios({url:'/mock/img',params:{_limit:4}});
-    this.setState({img:resImg.data.page_data})
-
-
   }
 
 }

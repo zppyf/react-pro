@@ -4,6 +4,10 @@ import '../assets/css/Login.css'
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 
+import {observer, inject} from 'mobx-react'
+
+@inject('store')
+@observer
 class Login extends Component {
   state={
     username:'',
@@ -48,9 +52,9 @@ class Login extends Component {
           </div>
           <form>
             <input type="text" placeholder="Username"/>
-            <input type="email" placeholder="Email"/>
             <input type="password" placeholder="password"/>
-            <button className="button"><i className="fa fa-send"></i>Sign In</button>
+          <input type="button" value="Sign In" className="login-btn" onClick={this.submit}/>
+            
             <Link to="/reg" className="reg button"><i className="fa fa-send">Sign Up</i></Link>
 
           </form>

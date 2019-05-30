@@ -2,6 +2,11 @@ import React,{Component} from "react";
 import '../assets/css/Reg.css'
 import {Link} from 'react-router-dom'
 import axios from "axios";
+
+import {observer, inject} from 'mobx-react'
+
+@inject('store')
+@observer
 class Reg extends Component {
   state={
     username:'',
@@ -46,12 +51,12 @@ class Reg extends Component {
             <h3>Sign Up</h3>
           </div>
           <form>
-            <input type="text" placeholder="Full Name"/>
             <input type="text" placeholder="Username"/>
-            <input type="email" placeholder="Email"/>
             <input type="password" placeholder="password"/>
-            <input type="password" placeholder="Retype Password"/>
-            <button className="button"><i className="fa fa-send"></i>Sign Up</button>
+            {/* <button className="button"><i className="fa fa-send"></i>Sign Up</button> */}
+            
+            <input type="button" value="注 册" className="login-btn"onClick={this.submit}/>
+
             <Link to="/login" className="login button"><i className="fa fa-send">Sign In</i></Link>
 
           </form>

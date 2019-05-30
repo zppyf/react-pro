@@ -1,5 +1,9 @@
 import React,{Component} from "react";
 import '../assets/css/User.css'
+import {observer, inject} from 'mobx-react'
+
+@inject('store')
+@observer
 class User extends Component {
   render() {
     let {fans, follow, icon, nikename, time } = this.props.data;
@@ -25,7 +29,7 @@ class User extends Component {
             </li>
           </ul>
         </div>
-        <div className="docList">
+        {/* <div className="docList">
           <ul>
             <li className="gk-text">
               <i></i>
@@ -56,7 +60,7 @@ class User extends Component {
               <p>收藏夹</p>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     );
   }

@@ -9,23 +9,24 @@ import '../assets/css1/owl.carousel.min.css';
 import '../assets/css1/owl.theme.default.min.css';
 import "../assets/css/Detail.css";
 import '../assets/css1/a.css';
-// import '../library/jquery.min.js';
-// import '../library/materialize.js';
-// import '../library/owl.carousel.min.js';
-// import '../library/main.js';
+import {observer, inject} from 'mobx-react'
 import Swiper from '../components/Swiper';
 import axios from 'axios';
 
-
-
-export default class Detail extends React.Component{
-  state={
-    banners:[]
-  };
+@inject('store')
+@observer
+class Detail extends React.Component{
+  // state={
+  //   banners:[]
+  // };
+  constructor(props){
+    super();
+    props.store.list.get({url: '/mock/banner',params:{_limit:3},propsName: 'banner'});
+  }
 
   render(){
 
-    let {match,location} = this.props;
+    let {match,location,banner} = this.props.store.list;
 
     return (
       <div className="Detail">
@@ -34,7 +35,7 @@ export default class Detail extends React.Component{
              <li className="l-btn" onClick={()=>this.props.history.go(-1)}></li>
            </ul>
          </div>
-         <Swiper {...this.props} banners={this.state.banners} dataName="banner"/>
+         <Swiper {...this.props} banners={banner} dataName="banner"/>
          <div className="segments-page">
           <div className="container">
             <div className="product-details">
@@ -102,11 +103,9 @@ export default class Detail extends React.Component{
       </div>
     );
   }
-  async componentDidMount(){
-
-
-    let resBanner = await axios({url:'/mock/banner',params:{_limit:3}});
-    this.setState({banners:resBanner.data.page_data})
-
-  }
+  // async componentDidMount(){
+  //   let resBanner = await axios({url:'/mock/banner',params:{_limit:3}});
+  //   this.setState({banners:resBanner.data.page_data})
+  // }
 }
+export default Detail;

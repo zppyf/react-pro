@@ -5,8 +5,9 @@ import Detail from "./Detail";
 
 import querystring from 'query-string';
 
-
-export default class Product extends React.Component{
+@inject('store')
+@observer
+class Product extends React.Component{
 
   render(){
     let {history,location,match} = this.props;
@@ -31,3 +32,4 @@ export default class Product extends React.Component{
   }
 
 }
+export default Product;
